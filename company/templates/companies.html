@@ -1,0 +1,26 @@
+{% extends base.html %}
+
+{% block title_block %}
+    Companies
+{% endblock %}
+
+
+{% block body_block %}
+<div>
+    <h3>Industries</h3>
+    <nav class="navbar navbar-light bg-light">
+        <span class="navbar-brand mb-0 h1"></span>
+
+        <a class="navbar-brand" href="#">Categories</a>
+
+      </nav>
+</div>
+
+<div>
+    <ul class="list-group list-group-horizontal-lg">
+        {% for company in companies %}
+        <li class="list-group-item"><a href="/company/category/{{ category.slug }}">{{ company.name }}</a></li>
+    </ul>
+</div>
+{% endblock %}
+
