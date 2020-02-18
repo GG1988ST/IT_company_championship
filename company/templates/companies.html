@@ -20,6 +20,7 @@
     <ul class="list-group list-group-horizontal-lg">
         {% for company in companies %}
         <li class="list-group-item"><a href="/company/category/{{ category.slug }}">{{ company.name }}</a></li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}
