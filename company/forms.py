@@ -17,3 +17,14 @@ class CompanyForm(forms.ModelForm):
         # This means specifying only the name field?
         fields = ('name','location')
 
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(max_length= Category.NAME_MAX_LENGTH, help_text="Please enter the category name.")
+
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+
+
+
