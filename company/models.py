@@ -22,7 +22,12 @@ class Company(models.Model):
     location = models.CharField(max_length=NAME_MAX_LENGTH)
     #number_of_employee = models.IntegerField(default=0)
     rates = models.IntegerField(default=0)
+<<<<<<< HEAD
     slug=models.SlugField(unique=True)
+=======
+    likes = models.IntegerField(default=0)
+    slug= models.SlugField(unique=True)
+>>>>>>> 2418853ab89d9378dcea87b6c38fbb3ef15f6756
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Company, self).save(*args, **kwargs)
