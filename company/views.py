@@ -2,6 +2,9 @@ from django.shortcuts import render
 from company.models import Company
 from django.http import HttpResponse
 
+def index(request):
+    context_dict = {}
+    return render(request, 'company/index.html', context=context_dict)
 
 
 def show_company(request, company_name_slug):
