@@ -10,7 +10,7 @@ class Company(models.Model):
     #number_of_employee = models.IntegerField(default=0)
     rates = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
-    slug=models.SlugField(unique=True)
+    slug= models.SlugField(unique=True)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Company, self).save(*args, **kwargs)
