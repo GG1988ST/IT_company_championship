@@ -60,5 +60,5 @@ def add_comment(request, company_name_slug):
         else:
             print(form.errors)
 
-    context_dict = {'form': form 'company': company}
+    context_dict = {'form': form, 'company': company}
     return render(request, 'company/add_comment.html', context=context_dict)
