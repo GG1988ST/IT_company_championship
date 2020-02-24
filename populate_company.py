@@ -12,7 +12,7 @@ def populate():
         {'comments':'good job>',
         'date':2020-2-3},
         {'comments':'good job{',
-        'date':2020-3-3} ]
+        'date':2020-3-3} ] 
 
     comments_2 = [
         {'comments':'good jobp',
