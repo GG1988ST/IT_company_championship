@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
-from company import views
+from Ratecompany import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatters = [
+urlpatterns = [
 	path('', views.index, name='homepage'),
-	path('view_companies/', include('company.urls')),
+	path('Ratecompany/', include('Ratecompany.urls')),
 	path('admin/', admin.site.urls),
 ]
