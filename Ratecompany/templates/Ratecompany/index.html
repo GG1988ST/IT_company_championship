@@ -1,41 +1,81 @@
 <!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex.css"/>
-    <link rel="stylesheet" href="http://dcs.gla.ac.uk/~richardm/assets/stylesheets/vex-theme-os.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <style>
-      body{
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        font-size: 200%;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    <title>Homepage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../static/cover.css" rel="stylesheet">
+
+  </head>
+
+  <body>
 
 
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+            <!-- Navigation -->
+            <header>
 
-  </style>
-</head>
+               <nav class="navbar" >
+        <span class="navbar-brand mb-0 h1"></span>
 
-<body>
-    <div>
-        <p><strong>
-            这个世界需要英雄
-        </strong></p>
+         <ul class="nav justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link active" href="#">Home Page</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+            </li>
+             <li class="nav-item">
+            <a class="nav-link" href="#">Sign Up</a>
+            </li>
+
+             <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Company Name" aria-label="Search">
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+             </form>
+        </ul>
+    </nav>
+            </header>
+
+
+            <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center text-center" id="mainbody">
+        <div class="col-lg-10" id="rate">
+          <h1 class="text-uppercase font-weight-bold">RATE YOUR COMPANY</h1>
+          <hr class="divider my-4">
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <p class="text-white-75 font-weight-light mb-5" id="slogan">Start from here. This is where your dreams begin!</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">Company Sign In</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">Employee Sign In</a>
+        </div>
+      </div>
     </div>
-</body>
+  </header>
 
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>
