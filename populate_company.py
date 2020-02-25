@@ -6,7 +6,7 @@ django.setup()
 from rango.models import Category, Page
 
 def populate():
-    comments = [
+    comment01 = [
         {'comments':'good job?',
         'date':2020-1-3},
         {'comments':'good job>',
@@ -14,28 +14,34 @@ def populate():
         {'comments':'good job{',
         'date':2020-3-3} ] 
 
-    comments_2 = [
+    comment02 = [
         {'comments':'good jobp',
         'date':2020-1-1},
         {'comments':'good job/',
-        'date':2020-1-2},
+        'date':2020-4-2},
         {'comments':'good job:',
-        'date':2020-1-3} ]
+        'date':2020-5-3} ]
 
-    comments_3 = [
-        {'comments':'good jobi,
-        'date':2020-1-6},
+    comment03 = [
+        {'comments':'good jobi',
+        'date':2020-7-6},
         {'comments':'good job?',
-        'date':2020-1-7} ]
+        'date':2020-11-7} ]
 
-    cats = {'Baidu': {'pages': python_pages,'views':128,'likes':64},
-    'Google': {'pages': django_pages,'views':64,'likes':32},
-    'Fire': {'pages': other_pages,'views':32,'likes':16} }
+    itcompany =[{'name':'Baidu','comments': comment01,'location':'China','rates':4},
+               {'name':'Google','comments': comment02,'location':'British','rates':2}]
+    gamecompany={'name':'Fire','comments': comment03,'location':'Japan','rates':1 }
 
-    for cat, cat_data in cats.items():
-        c = add_cat(cat,cat_data['views'],cat_data['likes'])
-        for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'],p['views'])
+
+    category= {'IT':{'company':itcompany},'Game':{'company': gamecompany}}
+
+
+
+
+    for category, category_data in category.items():
+        c = add_category(category,category['company'])
+        for p in category_data['company']:
+            add_page(c, p['comments'], p['date'],)
     
     # Print out the categories we have added.
     for c in Category.objects.all():
@@ -44,19 +50,27 @@ def populate():
 
 
 
-def add_page(cat, title, url, views):
-        p = Page.objects.get_or_create(category=cat, title=title)[0]
-        p.url=url
-        p.views=views
+def add_comments(company,comments,date):
+        p = Page.objects.get_or_create(company=company)[0]
+        p.comments=comments
+        p.date=date
         p.save()
         return p
 
-def add_cat(name,views,likes):
-        c = Category.objects.get_or_create(name=name)[0]
-        c.likes=likes
-        c.views=views
+def add_company(category,name,location,rates):
+        c = Company.objects.get_or_create(name=name)[0]
+        c.location=location
+        c.rates=rates
         c.save()
         return c
+
+def add_category(name, location, rates):
+    c = Category.objects.get_or_create(name=name)[0]
+    c.location = location
+    c.rates = rates
+    c.save()
+    return c
+
 
 if __name__ == '__main__':
         print('Starting Rango population script...')
