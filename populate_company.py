@@ -3,7 +3,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','IT_company_championship.settings
 
 import django
 django.setup()
-from rango.models import Category, Page
+from Ratecompany.models import Category, Comments, Company
 
 def populate():
     comment01 = [

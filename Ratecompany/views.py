@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from Ratecompany.models import Company
 from django.http import HttpResponse
 
