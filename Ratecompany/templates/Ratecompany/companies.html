@@ -12,7 +12,9 @@
         <span class="navbar-brand mb-0 h1"></span>
 
         <a class="navbar-brand" href="#">Categories</a>
-
+        {% for category in categories %}
+        <li class="list-category-item"><a href="/company/{{ category.slug }}">{{ category.name }}</a></li>
+        {% endfor %}
       </nav>
 </div>
 

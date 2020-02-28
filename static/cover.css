@@ -16,9 +16,12 @@ body {
 
   #slogan{
       color: whitesmoke;
+      font-size: 130%;
   }
 
-
+  .container{
+      margin-top: 200px!important;
+  }
 
 
   .nav-item{
