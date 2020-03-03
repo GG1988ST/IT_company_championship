@@ -29,8 +29,8 @@ def populate():
         'date':2020-11-7} ]
 
     itcompany =[{'name':'Baidu','comments': comment01,'location':'China','rates':4},
-               {'name':'Google','comments': comment02,'location':'British','rates':2}]
-    gamecompany={'name':'Fire','comments': comment03,'location':'Japan','rates':1 }
+               {'name':'Google','comments': comment02,'location':'British','rates':2},]
+    gamecompany=[{'name':'Fire','comments': comment03,'location':'Japan','rates':1 },]
 
 
     category= {'IT':{'company':itcompany},'Game':{'company': gamecompany}}
@@ -39,36 +39,36 @@ def populate():
 
 
     for category, category_data in category.items():
-        c = add_category(category,category['company'])
+        c = add_category(category)
         for p in category_data['company']:
-            add_page(c, p['comments'], p['date'],)
-    
+            o = add_company(c, p['name'], p['location'], p['rates'])
+            for com in p['comments']:
+               h = add_comments(o, com['comments'], com['date'])
+
     # Print out the categories we have added.
     for c in Category.objects.all():
-        for p in Page.objects.filter(category=c):
+        for p in Company.objects.filter(category=c):
             print(f'- {c}: {p}')
 
 
 
 def add_comments(company,comments,date):
-        p = Page.objects.get_or_create(company=company)[0]
+        p = Comments.objects.get_or_create(company = company)[0]
         p.comments=comments
         p.date=date
         p.save()
         return p
 
-def add_company(category,name,location,rates):
-        c = Company.objects.get_or_create(name=name)[0]
+def add_company(category, name, location, rates):
+        c = Company.objects.get_or_create(category = category, name = name)[0]
+        c.category = category
         c.location=location
         c.rates=rates
         c.save()
         return c
 
-def add_category(name, location, rates):
+def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
-    c.location = location
-    c.rates = rates
-    c.save()
     return c
 
 

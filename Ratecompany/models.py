@@ -34,6 +34,6 @@ class Comments(models.Model):
     COMMENTS_MAX_LENGTH = 400
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     comments = models.CharField(max_length=COMMENTS_MAX_LENGTH)
-    date = models.DateField(auto_now=False)
+    date = models.DateField(auto_now=False,null=True)
     def __str__(self):
         return self.title
