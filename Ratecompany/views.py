@@ -1,4 +1,6 @@
 from django.shortcuts import render, reverse, redirect
+
+from Ratecompany.forms import CompanyForm
 from Ratecompany.models import Company
 from django.http import HttpResponse
 
