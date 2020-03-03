@@ -5,8 +5,12 @@ from Ratecompany.models import Category,Company,Comments
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
+
+
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = {'slug':('name',),'rates','location'}
+    list_display = ('name','rates','location')
+
+
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('comments','date')
 
