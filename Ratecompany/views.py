@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse, redirect
 
-from Ratecompany.forms import CompanyForm
+from Ratecompany.forms import CompanyForm,Comments
 from Ratecompany.models import Company
 from django.http import HttpResponse
 
@@ -12,12 +12,14 @@ def index(request):
 def show_company(request, company_name_slug):
 
     context_dict = {}
-
+    # print(company_name_slug)
     try:
-        company = Company.objects.get(slug=company_name_slug)
+        company = Company.objects.all()
+        print(company)
         context_dict['companies'] = company
 
     except Company.DoesNotExist:
+        print("errorrrrr")
         context_dict['companies'] = None
 
     return render(request, 'Ratecompany/companies.html', context=context_dict)
