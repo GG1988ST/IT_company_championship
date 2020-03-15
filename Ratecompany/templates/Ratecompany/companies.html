@@ -1,5 +1,6 @@
 {% extends 'Ratecompany/base.html' %}
-
+<link href="static/companies.css" rel="stylesheet">
+{% load static %}
 {% block title_block %}
     Companies
 {% endblock %}
@@ -28,7 +29,20 @@
 
         {% for company in companies %}
 
-        <li class="list-group-item"><a href="/company/category/{{ company.slug }}">{{ company.name }}</a></li>
+            <div class="card" style="width: 18rem;">
+
+                <img src="/static/baidu.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ company.name }}
+                    </h5>
+                    <a href="/company/category/{{ company.slug }}" class="btn btn-primary">GO!</a>
+                </div>
+
+            </div>
+
+
+
 
         {% endfor %}
 
