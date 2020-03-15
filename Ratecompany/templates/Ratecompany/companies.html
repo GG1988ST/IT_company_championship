@@ -12,11 +12,10 @@
         <span class="navbar-brand mb-0 h1"></span>
 
         <a class="navbar-brand" href="#">Categories</a>
-    <h4>888888</h4>
 
         {% for category in categories %}
 
-        <li class="list-category-item"><a href="/company/{{ category.slug }}">{{ category.name }}</a></li>
+        <li class="list-group-item"><a href="/company/{{ category.slug }}">{{ category.name }}</a></li>
         {% empty %}
         <h4>lilililliliil</h4>
         {% endfor %}
@@ -26,13 +25,11 @@
 
 <div>
     <ul class="list-group list-group-horizontal-lg">
-    <h3>77777</h3>
-        <h1>hahhaah</h1>
+
         {% for company in companies %}
-            <h3>88</h3>
+
         <li class="list-group-item"><a href="/company/category/{{ company.slug }}">{{ company.name }}</a></li>
-        {% empty %}
-            <h4>nulllllllll</h4>
+
         {% endfor %}
 
     </ul>

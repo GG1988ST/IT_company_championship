@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 
 from Ratecompany.forms import CompanyForm,Comments
-from Ratecompany.models import Company
+from Ratecompany.models import Company, Category
 from django.http import HttpResponse
 
 def index(request):
@@ -14,10 +14,11 @@ def show_company(request, company_name_slug):
     context_dict = {}
     # print(company_name_slug)
     try:
+        category = Category.objects.all()
         company = Company.objects.all()
-        print(company)
+        #print(company)
         context_dict['companies'] = company
-
+        context_dict['categories'] = category
     except Company.DoesNotExist:
         print("errorrrrr")
         context_dict['companies'] = None
