@@ -33,7 +33,7 @@ def show_company(request, company_name_slug):
     context_dict = {}
 
     try:
-        company = Company.objects.get(slug=company_name_slug)
+        company = Company.objects.filter(slug=company_name_slug)
         comments = Comments.objects.filter(company=company)
 
         context_dict['companies'] = company
