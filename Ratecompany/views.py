@@ -34,7 +34,7 @@ def show_company(request, company_name_slug):
 
     try:
         company = Company.objects.get(slug=company_name_slug)
-        comments = comment.objects.filter(company=company)
+        comments = Comments.objects.filter(company=company)
 
         context_dict['companies'] = company
         context_dict['comments'] = comments
