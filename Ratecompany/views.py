@@ -25,6 +25,20 @@ def show_category(request):
 
     return render(request, 'Ratecompany/companies.html', context=context_dict)
 
+def show_company(request, company_name_slug):
+    context_dict = {}
+
+    try:
+        company = Company.objects.get(slug=company_name_slug)
+        comments = comment.objects.filter(company=company)
+
+        context_dict['companies'] = company
+        context_dict['comments'] = comments
+    except Category.DoesNotExist:
+        print("error")
+        context_dict['companies'] = None
+
+    return render(request, 'Ratecompany/showCompany.html', context=context_dict)
 
 def add_company(request):
     form = CompanyForm()
