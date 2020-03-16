@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'Ratecompany/index.html', context=context_dict)
 
 
-def show_company(request, company_name_slug):
+def show_category(request):
 
     context_dict = {}
     # print(company_name_slug)
