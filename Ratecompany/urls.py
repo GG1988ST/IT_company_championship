@@ -3,5 +3,5 @@ from Ratecompany import views
 
 app_name = 'Ratecompany'
 urlpatterns = [
-    path('Company/<slug:company_name_slug>/', views.show_company, name='show_company'),
+    path('Company/', views.show_company, name='show_company'),
 ]
