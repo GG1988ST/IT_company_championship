@@ -1,0 +1,99 @@
+{% extends 'Ratecompany/base.html' %}
+{% load extratags %}
+
+{% load static %}
+{% block title_block %}
+    Companies
+{% endblock %}
+{% block css %}
+    <style>
+    div.good-item-title{
+        background-color: #ad6464;
+        font-size: 18px;
+        padding: 10px 20px;
+        color: #fff;
+        font-weight: normal;
+        margin: auto;
+    }
+    div.good-item
+    {
+        width: 80%;
+        overflow: hidden;
+        margin: 80px auto;
+        border: solid 1px #ad6464;
+    }
+
+    div.company-left{
+        width: 50%;float: left;padding: 10px 10px 10px 10px
+    }
+
+    div.company-left > p
+    {
+        margin-left: 6%;
+        min-height: 21px;
+        _height: 21px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 21px;
+        color: #3C3C3C;
+        margin-bottom: 20px;
+    }
+
+    </style>
+
+{% endblock %}
+
+{% block body_block %}
+<div>
+    <div class="good-item">
+        <div class="good-item-title">
+            {{ company.name }} detail
+        </div>
+        <div style="" class="company-left">
+            <img src="{{ company.image.url }}" style="width: 80%;">
+            <p>category:{{ company.category.name }}</p>
+            <p>name:{{ company.name }}</p>
+            <p>location:{{ company.location }}</p>
+            <p>
+                <span>Salaly:</span>
+                {% for item in company.salary|inttolist %}
+                    <img src="/static/star-on-big.png">
+                {% endfor %}
+            </p>
+            <p>
+                <span>wellfare:</span>
+                {% for item in company.wellfare|inttolist %}
+                    <img src="/static/star-on-big.png">
+                {% endfor %}
+            </p>
+            <p>
+                <span>atmosphere:</span>
+                {% for item in company.atmosphere|inttolist %}
+                    <img src="/static/star-on-big.png">
+                {% endfor %}
+            </p>
+
+        </div>
+
+        <div class="company-right" style="background-color:#FFF;height:650px;width:45%;float:left;border: 1px solid aliceblue;border: 1px solid aliceblue;
+    overflow: scroll;">
+
+            <div style="background: aliceblue;"><img  src="{% static 'tu4.gif' %}" width="80px" height="80px" style="border-radius: 50%" >
+            <a style=" margin-left:90px; margin-top:20px; color:red" href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}"><b>view more comments</b></a></div>
+            <ul style="list-style: none;padding: 6px" id="say-list">
+                {% for item in company.comments.all %}
+                    <li style="border-bottom: 1px dashed rgba(240,150,102,0.28);font-size: 12px" data="{{ item.id }}">
+                        <span><strong>{{ item.user_name }}</strong>({{ item.create_time }}):</span>
+                        <p style="height:auto;word-break:break-all; color: #23527c;">{{ item.comments }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+    </div>
+</div>
+
+
+
+{% endblock %}
