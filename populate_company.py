@@ -5,35 +5,35 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'IT_company_championship.setting
 import django
 
 django.setup()
-from Ratecompany.models import Category, Comments, Company
+from Ratecompany.models import Category, Comments,  Company
 
 
 def populate():
     comment01 = [
-        {'comments': 'good job?',
+        {'comments': 'This company is very nice and I love it so much. Very flexible timetable and comfortable workspace!',
          'date': '2020-1-3', 'classify':1, 'score': 3},
-        {'comments': 'good job>',
+        {'comments': 'The colleagues are so lovely and the food is fabulous!',
          'date': '2020-2-3','classify':2, 'score': 3},
-        {'comments': 'good job{',
+        {'comments': 'Fantastic job!!',
          'date': '2020-3-3','classify':3, 'score': 4}]
 
     comment02 = [
-        {'comments': 'good jobp',
+        {'comments': 'I love the atomsphere of this company.',
          'date': '2020-1-1','classify':1, 'score': 5},
-        {'comments': 'good job/',
+        {'comments': 'I think it is ok.',
          'date': '2020-4-2','classify':1, 'score': 3},
-        {'comments': 'good job:',
+        {'comments': 'I donnot like it.',
          'date': '2020-5-3','classify':1, 'score': 3}]
 
     comment03 = [
-        {'comments': 'good jobi',
+        {'comments': 'I really enjoy working in it!',
          'date': '2020-7-6', 'classify':1, 'score': 3},
-        {'comments': 'good job?',
+        {'comments': 'nice job.',
          'date': '2020-11-7','classify':3, 'score': 3}]
 
     itcompany = [{'name': 'Baidu', 'comments': comment01, 'location': 'China'},
                  {'name': 'Google', 'comments': comment02, 'location': 'British'}, ]
-    gamecompany = [{'name': 'Fire', 'comments': comment03, 'location': 'Japan'}, ]
+    gamecompany = [{'name': 'Blizzard Entertainment', 'comments': comment03, 'location': 'US'}, ]
 
     category = {'IT': {'company': itcompany},
                 'Game': {'company': gamecompany}}
@@ -87,4 +87,3 @@ def add_category(name):
 if __name__ == '__main__':
     print('Starting Rango population script...')
     populate()
-
