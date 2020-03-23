@@ -10,6 +10,16 @@ from datetime import datetime
 from django.db.models import Q
 
 
+# login model
+class LoginRequiredMixin(object):
+    """
+    limit the login and refer to certain url
+    """
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view, login_url='/Ratecompany/login')
+
 def index(request):
     context_dict = {}
     return render(request, 'Ratecompany/index.html', context=context_dict)
