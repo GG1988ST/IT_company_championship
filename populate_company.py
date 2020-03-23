@@ -10,25 +10,25 @@ from Ratecompany.models import Category, Comments, Company
 
 def populate():
     comment01 = [
-        {'comments': 'good job?',
+        {'comments': 'I really enjoy working in this company.',
          'date': '2020-1-3', 'classify':1, 'score': 3},
-        {'comments': 'good job>',
+        {'comments': 'This company is amazing and fantastic!!',
          'date': '2020-2-3','classify':2, 'score': 3},
-        {'comments': 'good job{',
+        {'comments': 'I love the food here!!',
          'date': '2020-3-3','classify':3, 'score': 4}]
 
     comment02 = [
-        {'comments': 'good jobp',
+        {'comments': 'The colleagues and leaders here are friendly.',
          'date': '2020-1-1','classify':1, 'score': 5},
-        {'comments': 'good job/',
+        {'comments': 'I like the atmosphere here!',
          'date': '2020-4-2','classify':1, 'score': 3},
-        {'comments': 'good job:',
+        {'comments': 'I donnot like it.',
          'date': '2020-5-3','classify':1, 'score': 3}]
 
     comment03 = [
-        {'comments': 'good jobi',
+        {'comments': 'Very promising company',
          'date': '2020-7-6', 'classify':1, 'score': 3},
-        {'comments': 'good job?',
+        {'comments': 'Doing challenging work every day, I love this job',
          'date': '2020-11-7','classify':3, 'score': 3}]
 
     itcompany = [{'name': 'Baidu', 'comments': comment01, 'location': 'China'},
