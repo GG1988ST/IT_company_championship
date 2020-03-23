@@ -1,10 +1,8 @@
 from django.shortcuts import render, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
-from Ratecompany.forms import CompanyForm,Comments
 from Ratecompany.models import Company, Category, Comments, UserProfile
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from Ratecompany.forms import UserForm, UserProfileForm
 from django.contrib.auth import logout
 from datetime import datetime
 from django.db.models import Q
