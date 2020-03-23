@@ -8,6 +8,8 @@ from Ratecompany.forms import UserForm, UserProfileForm
 from django.contrib.auth import logout
 from datetime import datetime
 from django.db.models import Q
+from django.views import View
+
 
 
 # login model
@@ -24,7 +26,8 @@ def index(request):
     context_dict = {}
     return render(request, 'Ratecompany/index.html', context=context_dict)
 
-# company list view
+
+# company list
 class CompanyListView(View):
 
     def get(self, request):
@@ -34,6 +37,29 @@ class CompanyListView(View):
         if category_id:
             company = company.filter(category__id=category_id)
         return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
+
+
+# company detail
+class CompanyDetailView(View):
+
+    def get(self, request, *args, **kwargs):
+        company_id = kwargs.get("id")
+        company = Company.objects.get(id=company_id)
+        return render(request, 'Ratecompany/company_detail.html', {'company': company})
+
+
+#comment list
+class CommentListView(View):
+    def get(self, request, *args, **kwargs):
+        company_id = request.GET.get("id")
+        company = Company.objects.get(id=company_id)
+
+        comment_list = Comments.objects.filter(company=company).order_by("-create_time")
+        _type = request.GET.get("type")
+        if _type:
+            comment_list.filter(classify=int(_type))
+        return render(request, 'Ratecompany/comments.html', {'company': company, 'comment_list': comment_list})
+
 
 def show_category(request):
 
