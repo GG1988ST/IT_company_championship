@@ -38,16 +38,16 @@ class Comments(models.Model):
     comments = models.CharField(max_length=COMMENTS_MAX_LENGTH)
     date = models.DateField(auto_now=False, null=True)
     classify = models.IntegerField(choices=((0, 'salary'), (1, 'wellfare'), (2, 'atmosphere')))
-    score = models.IntegerField(verbose_name="分数")
+    score = models.IntegerField(verbose_name="mark")
     user_name = models.CharField(max_length=30)
     create_time = models.DateTimeField(auto_now_add=True)
 
 
 class UserProfile(AbstractUser):
-    '''扩展Django自带的User模型'''
+  
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='users', null=True)
-    sex = models.IntegerField(verbose_name="性别", choices=((0, '男'), (1, '女')), default=0)
-    phone = models.CharField(verbose_name="手机号", null=True, max_length=11)
-    address = models.CharField(verbose_name="地址", null=True, max_length=255)
-    image = models.ImageField(max_length=1000, upload_to='avatar', verbose_name=u'头像', blank=True,
+    sex = models.IntegerField(verbose_name="gender", choices=((0, 'male'), (1, 'female')), default=0)
+    phone = models.CharField(verbose_name="telephone number", null=True, max_length=11)
+    address = models.CharField(verbose_name="address", null=True, max_length=255)
+    image = models.ImageField(max_length=1000, upload_to='avatar', verbose_name='img', blank=True,
                               default='avatar/default.jpg')
