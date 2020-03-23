@@ -1,0 +1,51 @@
+{% extends 'Ratecompany/base.html' %}
+{% load extratags %}
+
+{% load static %}
+{% block css %}
+
+<style>
+    form > div{
+        margin-top: 20px;
+    }
+</style>
+
+{% endblock %}
+{% block body_block %}
+<div>
+    <div style="width: 80%;margin: auto">
+        <h2>hello {{ request.user.username }}!</h2>
+
+        <form method="post" action="{% url 'Ratecompany:rate' %}" style="width: 80%;margin: auto;margin-top: 50px">
+        {% csrf_token %}
+            <div>
+                <p>choose comment type:</p>
+                <input type="radio"   value="0"  name="classify">salary</input>
+                <input type="radio"   value="1"  name="classify">wellfare</input>
+                <input type="radio"   value="2"  name="classify">atmosphere</input>
+            </div>
+
+            <div>
+                <p>give a score:</p>
+                <input type="radio"   value="1"  name="star">1 star</input>
+                <input type="radio"   value="2"  name="star">2 star</input>
+                <input type="radio"   value="3"  name="star">3 star</input>
+                <input type="radio"   value="4"  name="star">4 star</input>
+                <input type="radio"   value="5"  name="star">5 stat</input>
+            </div>
+            <div>
+                <p>leave a comment:</p>
+            <textarea style="width: 80%" name="content">
+
+            </textarea>
+            </div>
+
+            <button type="submit">submit</button>
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

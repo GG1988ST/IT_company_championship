@@ -7,43 +7,30 @@
 
 
 {% block body_block %}
-<div>
+<div style="width: 90%; margin: auto">
     <h3>Industries</h3>
-    <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1"></span>
-
-        <a class="navbar-brand" href="#">Categories</a>
-
+    <nav style="background: transparent!important;border: transparent!important;" class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'Ratecompany:company_list' %}">Categories</a>
         {% for category in categories %}
-
-        <li class="list-group-item"><a href="/company/{{ category.slug }}">{{ category.name }}</a></li>
-        {% empty %}
-        <h4>lilililliliil</h4>
+            <li style="background: transparent!important;border: transparent!important;" class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
         {% endfor %}
-        </nav>
+    </nav>
 
 </div>
 
-<div>
+<div style="width: 80%;margin: auto">
     <ul class="list-group list-group-horizontal-lg">
-
         {% for company in companies %}
-
             <div class="card" style="width: 18rem;">
-
                 <img src="/static/baidu.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
                         {{ company.name }}
                     </h5>
-                    <a href="http://127.0.0.1:8000/Ratecompany/Company/Baidu/" class="btn btn-primary">GO!</a>
+                    <a href="{% url 'Ratecompany:company_detail' company.id %}" class="btn btn-primary">GO!</a>
+
                 </div>
-
             </div>
-
-
-
-
         {% endfor %}
 
     </ul>
