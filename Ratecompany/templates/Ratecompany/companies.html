@@ -4,15 +4,28 @@
 {% block title_block %}
     Companies
 {% endblock %}
+{% block css %}
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+
+    <script type="application/javascript">
+      $(document).ready(function() {
+          $("#show").show();
+      });
+
+    </script>
+{% endblock %}
 
 
 {% block body_block %}
+    <div style="display: none" id="show">
 <div style="width: 90%; margin: auto">
     <h3>Industries</h3>
-    <nav style="background: transparent!important;border: transparent!important;" class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'Ratecompany:company_list' %}">Categories</a>
         {% for category in categories %}
-            <li style="background: transparent!important;border: transparent!important;" class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
+            <li class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
         {% endfor %}
     </nav>
 
@@ -22,18 +35,18 @@
     <ul class="list-group list-group-horizontal-lg">
         {% for company in companies %}
             <div class="card" style="width: 18rem;">
-                <img src="/static/baidu.png" class="card-img-top" alt="...">
+                <img src="{{ company.image.url }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">
                         {{ company.name }}
                     </h5>
                     <a href="{% url 'Ratecompany:company_detail' company.id %}" class="btn btn-primary">GO!</a>
-
                 </div>
             </div>
         {% endfor %}
 
     </ul>
 </div>
+    </div>
 {% endblock %}
 
