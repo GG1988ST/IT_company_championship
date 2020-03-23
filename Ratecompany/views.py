@@ -22,6 +22,8 @@ class LoginRequiredMixin(object):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view, login_url='/Ratecompany/login')
 
+
+
 # company list
 class CompanyListView(View):
 
@@ -34,6 +36,7 @@ class CompanyListView(View):
         return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
 
 
+
 # company detail
 class CompanyDetailView(View):
 
@@ -41,6 +44,7 @@ class CompanyDetailView(View):
         company_id = kwargs.get("id")
         company = Company.objects.get(id=company_id)
         return render(request, 'Ratecompany/company_detail.html', {'company': company})
+
 
 
 #comment list
@@ -54,6 +58,7 @@ class CommentListView(View):
         if _type:
             comment_list.filter(classify=int(_type))
         return render(request, 'Ratecompany/comments.html', {'company': company, 'comment_list': comment_list})
+
 
 
 # Register model
@@ -79,6 +84,8 @@ class RegisterView(View):
         obj.save()
         return HttpResponseRedirect(reverse('Ratecompany:login'))
 
+
+
 # logout model
 class LogoutView(View):
     def get(self, request):
@@ -87,6 +94,27 @@ class LogoutView(View):
 
 
 
+# register model
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'Ratecompany/login.html')
+
+    def post(self, request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        is_remember_me = request.POST.get('is_remember_me')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                request.session.set_expiry(0)
+                if is_remember_me:
+                    request.session.set_expiry(None)
+                return HttpResponseRedirect(reverse("homepage"))
+            else:
+                return render(request, "Ratecompany/login.html", {"error": "unactivated account"})
+        else:
+            return render(request, "Ratecompany/login.html", {"error": "Username or password is incorrect or both"})
 
 def index(request):
     context_dict = {}
