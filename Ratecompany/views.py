@@ -24,6 +24,16 @@ def index(request):
     context_dict = {}
     return render(request, 'Ratecompany/index.html', context=context_dict)
 
+# company list view
+class CompanyListView(View):
+
+    def get(self, request):
+        category = Category.objects.all()
+        company = Company.objects.all()
+        category_id = request.GET.get('id')
+        if category_id:
+            company = company.filter(category__id=category_id)
+        return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
 
 def show_category(request):
 
