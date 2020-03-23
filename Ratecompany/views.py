@@ -116,6 +116,33 @@ class LoginView(View):
         else:
             return render(request, "Ratecompany/login.html", {"error": "Username or password is incorrect or both"})
 
+
+#Rate company
+class RateView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        return render(request, 'Ratecompany/rate.html')
+
+    def post(self, request):
+        classify = request.POST.get("classify")
+        star = int(request.POST.get("star"))
+        content = request.POST.get("content")
+        user = request.user
+        company = user.company
+        Comments.objects.create(company=company, comments=content, classify=classify, score=star,
+                                user_name=user.username)
+        user_count = company.users.all().count()
+        if classify == '0':
+            company.salary = ((company.salary * user_count) + star) / user_count
+        if classify == '1':
+            company.salary = ((company.wellfare * user_count) + star) / user_count
+        if classify == '2':
+            company.atmosphere = ((company.atmosphere * user_count) + star) / user_count
+        company.save()
+        return HttpResponseRedirect(reverse('Ratecompany:rate'))
+
+
+
 def index(request):
     context_dict = {}
     return render(request, 'Ratecompany/index.html', context=context_dict)
