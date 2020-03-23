@@ -1,4 +1,7 @@
+
+{% load static %}
 <!DOCTYPE html>
+
 <html>
     <head land="en">
         <meta charset="UTF-8" />
@@ -6,12 +9,12 @@
               integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
               crossorigin="anonymous">
 
-    <nav class="navbar navbar-light " style="background-color: #e3f2fd;" >
+    <nav class="navbar navbar-light " style="background:transparent!important; border: transparent!important;" >
         <span class="navbar-brand mb-0 h1"></span>
 
          <ul class="nav justify-content-end">
             <li class="nav-item">
-            <a class="nav-link active" href="{% url 'homepage' %}">Home Page</a>
+            <a style="color: white" class="nav-link active" href="{% url 'homepage' %}">Home Page</a>
             </li>
 
              {% if request.user.is_authenticated %}
@@ -19,20 +22,19 @@
                         <a class="nav-link" href="#">{{ request.user }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Ratecompany:logout' %}">logout</a>
+                        <a style="color: white" class="nav-link" href="{% url 'Ratecompany:logout' %}">logout</a>
                     </li>
              {% else %}
                 <li class="nav-item">
-                <a class="nav-link" href="{% url 'Ratecompany:login' %}">Login</a>
+                <a style="color: white" class="nav-link" href="{% url 'Ratecompany:login' %}">Login</a>
                 </li>
                  <li class="nav-item">
-                <a class="nav-link" href="{% url 'Ratecompany:register' %}">Sign Up</a>
+                <a style="color: white" class="nav-link" href="{% url 'Ratecompany:register' %}">Sign Up</a>
                 </li>
              {% endif %}
-             <form class="form-inline" method="post" action="{% url 'Ratecompany:company_list' %}">
-                 {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" placeholder="Company Name" aria-label="Search" name="search">
-                 <button class="btn btn-outline-success" type="submit">Search</button>
+             <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Company Name" aria-label="Search">
+                 <button style="color: white" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
              </form>
         </ul>
     </nav>
@@ -42,7 +44,15 @@
 
             {% endblock %}
         </title>
+
     {% block css %}
+        <style>
+        body{
+            height: 100%;
+            background-image: url('/static/bg.jpg');
+            background-size: 100%;
+        }
+        </style>
     {% endblock %}
     </head>
 

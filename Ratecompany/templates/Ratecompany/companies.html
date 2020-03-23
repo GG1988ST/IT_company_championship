@@ -9,10 +9,10 @@
 {% block body_block %}
 <div style="width: 90%; margin: auto">
     <h3>Industries</h3>
-    <nav class="navbar navbar-light bg-light">
+    <nav style="background: transparent!important;border: transparent!important;" class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'Ratecompany:company_list' %}">Categories</a>
         {% for category in categories %}
-            <li class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
+            <li style="background: transparent!important;border: transparent!important;" class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
         {% endfor %}
     </nav>
 
@@ -28,6 +28,7 @@
                         {{ company.name }}
                     </h5>
                     <a href="{% url 'Ratecompany:company_detail' company.id %}" class="btn btn-primary">GO!</a>
+
                 </div>
             </div>
         {% endfor %}
