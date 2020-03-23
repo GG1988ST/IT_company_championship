@@ -28,6 +28,7 @@ SECRET_KEY = 'k934^dp_k0g%lkji8@6tqb+dk4qhntz)o-)6074=-&o!t3=1kx'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
 AUTH_USER_MODEL = 'Ratecompany.UserProfile'
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Ratecompany',
+    'Ratecompany.templatetags',
 ]
 
 MIDDLEWARE = [

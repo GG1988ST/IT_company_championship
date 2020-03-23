@@ -5,35 +5,35 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'IT_company_championship.setting
 import django
 
 django.setup()
-from Ratecompany.models import Category, Comments,  Company
+from Ratecompany.models import Category, Comments, Company
 
 
 def populate():
     comment01 = [
-        {'comments': 'This company is very nice and I love it so much. Very flexible timetable and comfortable workspace!',
+        {'comments': 'good job?',
          'date': '2020-1-3', 'classify':1, 'score': 3},
-        {'comments': 'The colleagues are so lovely and the food is fabulous!',
+        {'comments': 'good job>',
          'date': '2020-2-3','classify':2, 'score': 3},
-        {'comments': 'Fantastic job!!',
+        {'comments': 'good job{',
          'date': '2020-3-3','classify':3, 'score': 4}]
 
     comment02 = [
-        {'comments': 'I love the atomsphere of this company.',
+        {'comments': 'good jobp',
          'date': '2020-1-1','classify':1, 'score': 5},
-        {'comments': 'I think it is ok.',
+        {'comments': 'good job/',
          'date': '2020-4-2','classify':1, 'score': 3},
-        {'comments': 'I donnot like it.',
+        {'comments': 'good job:',
          'date': '2020-5-3','classify':1, 'score': 3}]
 
     comment03 = [
-        {'comments': 'I really enjoy working in it!',
+        {'comments': 'good jobi',
          'date': '2020-7-6', 'classify':1, 'score': 3},
-        {'comments': 'nice job.',
+        {'comments': 'good job?',
          'date': '2020-11-7','classify':3, 'score': 3}]
 
     itcompany = [{'name': 'Baidu', 'comments': comment01, 'location': 'China'},
                  {'name': 'Google', 'comments': comment02, 'location': 'British'}, ]
-    gamecompany = [{'name': 'Blizzard Entertainment', 'comments': comment03, 'location': 'US'}, ]
+    gamecompany = [{'name': 'Fire', 'comments': comment03, 'location': 'Japan'}, ]
 
     category = {'IT': {'company': itcompany},
                 'Game': {'company': gamecompany}}

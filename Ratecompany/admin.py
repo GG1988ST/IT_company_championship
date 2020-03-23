@@ -3,6 +3,7 @@ from Ratecompany.models import *
 
 # Register your models here.
 
+
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
 
@@ -12,7 +13,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ('comments','date')
+    list_display = ('comments', 'date')
 
 admin.site.register(UserProfile)
 admin.site.register(Category,CategoryAdmin)
