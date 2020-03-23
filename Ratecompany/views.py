@@ -22,11 +22,6 @@ class LoginRequiredMixin(object):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view, login_url='/Ratecompany/login')
 
-def index(request):
-    context_dict = {}
-    return render(request, 'Ratecompany/index.html', context=context_dict)
-
-
 # company list
 class CompanyListView(View):
 
@@ -83,6 +78,22 @@ class RegisterView(View):
         obj.set_password(password)
         obj.save()
         return HttpResponseRedirect(reverse('Ratecompany:login'))
+
+# logout model
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse('Ratecompany:login'))
+
+
+
+
+def index(request):
+    context_dict = {}
+    return render(request, 'Ratecompany/index.html', context=context_dict)
+
+
+
 
 def show_category(request):
 
