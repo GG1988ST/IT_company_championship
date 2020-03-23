@@ -1,9 +1,13 @@
 from django.urls import path
-from Ratecompany import views
+from Ratecompany.views import *
 
 app_name = 'Ratecompany'
 urlpatterns = [
-    path('',views.index,name='index'),
-    path('Company/', views.show_category, name='show_category'),
-    path('Company/<slug:company_name_slug>/', views.show_company, name='show_company'),
+    path('Company/', CompanyListView.as_view(), name='company_list'),
+    path('Company/<int:id>/', CompanyDetailView.as_view(), name='company_detail'),
+    path('comment-list/', CommentListView.as_view(), name='comment-list'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('rate/', RateView.as_view(), name='rate'),
 ]

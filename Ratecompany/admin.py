@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Ratecompany.models import Category,Company,Comments
+from Ratecompany.models import *
 
 # Register your models here.
 
@@ -8,13 +8,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('name','rates','location')
+    list_display = ('name', 'salary', 'wellfare', 'atmosphere', 'location')
 
 
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('comments','date')
 
-
+admin.site.register(UserProfile)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Company,CompanyAdmin)
 admin.site.register(Comments,CommentsAdmin)
