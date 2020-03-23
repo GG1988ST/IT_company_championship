@@ -61,6 +61,29 @@ class CommentListView(View):
         return render(request, 'Ratecompany/comments.html', {'company': company, 'comment_list': comment_list})
 
 
+# Register model
+class RegisterView(View):
+    def get(self, request):
+        company = Company.objects.all()
+        return render(request, 'Ratecompany/register.html', {'company_list': company})
+
+    def post(self, request):
+        company_id = request.POST.get("company_id")
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        rePassword = request.POST.get('rePassword')
+        if password != rePassword:
+            return render(request, 'Ratecompany/register.html', {'error': 'Inconsistent password'})
+
+        user = UserProfile.objects.filter(Q(username=username) | Q(email=email))
+        if user:   # already has the user
+            return render(request, 'Ratecompany/register.html', {'error': 'account already exist'})
+        obj = UserProfile.objects.create(username=username, email=email, company_id=company_id)
+        obj.set_password(password)
+        obj.save()
+        return HttpResponseRedirect(reverse('Ratecompany:login'))
+
 def show_category(request):
 
     context_dict = {}
