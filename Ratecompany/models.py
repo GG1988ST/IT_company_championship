@@ -1,8 +1,17 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MaxValueValidator, MinValueValidator
 
-
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        models.IntegerField.__init__(self, verbose_name, name, **kwargs)
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
+        
 # Create your models here.
 class Category(models.Model):
     TAB_MAX_LENGTH = 128
@@ -15,6 +24,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+        
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 
 class Company(models.Model):
@@ -23,10 +35,11 @@ class Company(models.Model):
     name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
     image = models.ImageField(max_length=1000, upload_to='img', default='img/baidu.png', blank=True)
     location = models.CharField(max_length=NAME_MAX_LENGTH)
-    salary = models.IntegerField(default=0)
-    wellfare = models.IntegerField(default=0)
-    atmosphere = models.IntegerField(default=0)
-
+    salary=IntegerRangeField(min_value=1, max_value=5)
+    wellfare=IntegerRangeField(min_value=1, max_value=5)
+    atmosphere=IntegerRangeField(min_value=1, max_value=5)
+    class Meta:
+        verbose_name_plural = 'Companies'
 
     def __str__(self):
         return self.name
@@ -41,7 +54,8 @@ class Comments(models.Model):
     score = models.IntegerField(verbose_name="mark")
     user_name = models.CharField(max_length=30)
     create_time = models.DateTimeField(auto_now_add=True)
-
+    class Meta:
+        verbose_name_plural = 'Comments'
 
 class UserProfile(AbstractUser):
   

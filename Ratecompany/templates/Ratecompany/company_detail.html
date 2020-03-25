@@ -66,19 +66,22 @@
             <p>name:{{ company.name }}</p>
             <p>location:{{ company.location }}</p>
             <p>
-                <span>Salaly:</span>
+                <span>Salary:</span>
+                <img src="/static/star-on-big.png">
                 {% for item in company.salary|inttolist %}
                     <img src="/static/star-on-big.png">
                 {% endfor %}
             </p>
             <p>
                 <span>wellfare:</span>
+                <img src="/static/star-on-big.png">
                 {% for item in company.wellfare|inttolist %}
                     <img src="/static/star-on-big.png">
                 {% endfor %}
             </p>
             <p>
                 <span>atmosphere:</span>
+                <img src="/static/star-on-big.png">
                 {% for item in company.atmosphere|inttolist %}
                     <img src="/static/star-on-big.png">
                 {% endfor %}
