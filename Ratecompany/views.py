@@ -33,6 +33,18 @@ class CompanyListView(View):
             company = company.filter(category__id=category_id)
         return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
 
+    def post(self, request):
+        category = Category.objects.all()
+        company = Company.objects.all()
+        search = request.POST.get("search")
+        if search:
+
+            company = company.filter(name__contains=search)
+        category_id = request.GET.get('id')
+        if category_id:
+            company = company.filter(category__id=category_id)
+        return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
+
 
 
 # company detail
@@ -66,9 +78,24 @@ class RegisterView(View):
         return render(request, 'Ratecompany/register.html', {'company_list': company})
 
     def post(self, request):
+        company=Company.objects.all()
+        emailtag='kdjnedke'
         company_id = request.POST.get("company_id")
+        if company_id =='1':
+                  emailtag= '@baidu.cn'
+        if company_id =='2':
+                  emailtag= '@google.cn'
+        if company_id =='3':
+                  emailtag= '@fire.cn'
+        if company_id =='4':
+                emailtag= '@wangyi.cn'
+        print(company_id)
+        print(emailtag)
         username = request.POST.get('username')
         email = request.POST.get('email')
+        print(company_id)
+        if email and not email.endswith(emailtag):
+            return render(request,'Ratecompany/register.html', {'error': 'non-commercial email','company_list':company})
         password = request.POST.get('password')
         rePassword = request.POST.get('rePassword')
         if password != rePassword:
