@@ -7,7 +7,12 @@
 {% block css %}
 
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
-
+    <style>
+    body{
+        background-image: url("/static/bg.jpg");
+        background-size: 100%;
+    }
+    </style>
 
     <script type="application/javascript">
       $(document).ready(function() {
@@ -22,10 +27,10 @@
     <div style="display: none" id="show">
 <div style="width: 90%; margin: auto">
     <h3>Industries</h3>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'Ratecompany:company_list' %}">Categories</a>
+    <nav style="background: transparent!important;" class="navbar navbar-light bg-light">
+        <a style="background: transparent!important;" class="navbar-brand" href="{% url 'Ratecompany:company_list' %}">Categories</a>
         {% for category in categories %}
-            <li class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
+            <li style="background: transparent!important;border: transparent!important;" class="list-group-item"><a href="{% url 'Ratecompany:company_list' %}?id={{ category.id }}">{{ category.name }}</a></li>
         {% endfor %}
     </nav>
 
