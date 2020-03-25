@@ -5,9 +5,49 @@
 {% block css %}
 
 <style>
-    form > div{
-        margin-top: 20px;
-    }
+body{
+    background-image: url('/static/detail.jpg');
+    height: 100%;
+    background-size: 100%;
+}
+div.good-item-title{
+    background-color: #ad6464;
+    font-size: 18px;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: normal;
+    margin: auto;
+}
+div.good-item
+{
+    width: 80%;
+    overflow: hidden;
+    margin: 80px auto;
+    border: solid 1px #ad6464;
+}
+
+div.company-left{
+    width: 50%;float: left;padding: 10px 10px 10px 10px;
+
+
+}
+
+div.company-left > p
+{
+    margin-left: 6%;
+    min-height: 21px;
+    _height: 21px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    color: white;
+    margin-bottom: 20px;
+}
+div.company-right{
+    background: transparent!important;
+}
+
+
 </style>
 
 {% endblock %}

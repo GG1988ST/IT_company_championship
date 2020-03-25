@@ -94,7 +94,7 @@
             <ul style="list-style: none;padding: 6px" id="say-list">
                 {% for item in company.comments.all %}
                     <li style="border-bottom: 1px dashed rgba(240,150,102,0.28);font-size: 12px; color: whitesmoke" data="{{ item.id }}">
-                        <span><strong>{{ item.user_name }}</strong>({{ item.create_time }}):</span>
+                        <span></strong>({{ item.create_time }}):</span>
                         <p style="height:auto;word-break:break-all; color: whitesmoke;">{{ item.comments }}</p>
                     </li>
                 {% endfor %}
