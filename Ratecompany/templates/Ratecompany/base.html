@@ -14,7 +14,7 @@
 
          <ul class="nav justify-content-end">
             <li class="nav-item">
-            <a style="color: white" class="nav-link active" href="{% url 'homepage' %}">Home Page</a>
+            <a class="nav-link active" href="{% url 'homepage' %}">Home Page</a>
             </li>
 
              {% if request.user.is_authenticated %}
@@ -22,19 +22,20 @@
                         <a class="nav-link" href="#">{{ request.user }}</a>
                     </li>
                     <li class="nav-item">
-                        <a style="color: white" class="nav-link" href="{% url 'Ratecompany:logout' %}">logout</a>
+                        <a class="nav-link" href="{% url 'Ratecompany:logout' %}">logout</a>
                     </li>
              {% else %}
                 <li class="nav-item">
-                <a style="color: white" class="nav-link" href="{% url 'Ratecompany:login' %}">Login</a>
+                <a class="nav-link" href="{% url 'Ratecompany:login' %}">Login</a>
                 </li>
                  <li class="nav-item">
-                <a style="color: white" class="nav-link" href="{% url 'Ratecompany:register' %}">Sign Up</a>
+                <a class="nav-link" href="{% url 'Ratecompany:register' %}">Sign Up</a>
                 </li>
              {% endif %}
-             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Company Name" aria-label="Search">
-                 <button style="color: white" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              <form class="form-inline" method="post" action="{% url 'Ratecompany:company_list' %}">
+                  {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" placeholder="Company Name" aria-label="Search" name="search">
+                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
              </form>
         </ul>
     </nav>
