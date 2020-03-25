@@ -9,25 +9,32 @@
     <style>
     .rank-show .show-table {
     width: 90%;
-    color: #666;
+    color: whitesmoke;
     font-size: 16px;
         margin: auto;
 }
+    body{
+        background-image: url("/static/comments.jpg");
+        background-size: 100%;
+    }
 
 .rank-show .show-table tr.head {
-    background: #e4f6ff;
+    background: transparent;
     height: 50px;
     line-height: 50px;
 }
 
 .rank-show .show-table th {
-    color: #0063ca;
+    color: honeydew;
 }
 
 .rank-show .show-table td {
     padding: 10px 0;
 }
-
+    .list-group-item{
+        background: transparent;
+        border: transparent;
+    }
 
     </style>
 
@@ -35,8 +42,8 @@
 
 {% block body_block %}
 <div>
-    <nav class="navbar navbar-light bg-light" style="width: 90%;margin: auto">
-        <a class="navbar-brand">Categories</a>
+    <nav class="navbar navbar-light bg-light" style="background:transparent!important; width: 90%;margin: auto">
+        <a style="color: white" class="navbar-brand">Categories</a>
          <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}">Most Recent</a></li>
          <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=0">Wellfare</a></li>
          <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=1">Salary</a></li>
@@ -48,7 +55,7 @@
                 <table class="show-table table table-hover table-striped">
                     <thead>
                     <tr class="head">
-                        <th style="text-align: center;">username</th>
+
                         <th style="text-align: center;">content</th>
                         <th style="text-align: center;">score</th>
                         <th style="text-align: center;">type</th>
@@ -56,7 +63,7 @@
                     <tbody>
                         {% for item in comment_list %}
                         <tr>
-                            <td style="text-align: center;" width="150">{{ item.user_name }}</td>
+
                             <td style="text-align: center;" width="400">
                                 <span class="raknk-mame">{{ item.comments }}</span>
                             </td>
