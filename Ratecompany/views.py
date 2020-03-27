@@ -66,7 +66,7 @@ class CommentListView(View):
         comment_list = Comments.objects.filter(company=company).order_by("-create_time")
         _type = request.GET.get("type")
         if _type:
-            comment_list.filter(classify=int(_type))
+            comment_list=comment_list.filter(classify=int(_type))
         return render(request, 'Ratecompany/comments.html', {'company': company, 'comment_list': comment_list})
 
 

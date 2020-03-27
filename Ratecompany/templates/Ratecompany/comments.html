@@ -45,8 +45,8 @@
     <nav class="navbar navbar-light bg-light" style="background:transparent!important; width: 90%;margin: auto">
         <a style="color: white" class="navbar-brand">Categories</a>
          <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}">Most Recent</a></li>
-         <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=0">Wellfare</a></li>
-         <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=1">Salary</a></li>
+         <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=0">Salary</a></li>
+         <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=1">Wellfare</a></li>
          <li class="list-group-item"><a href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}&type=2">Atmosphare</a></li>
     </nav>
 
