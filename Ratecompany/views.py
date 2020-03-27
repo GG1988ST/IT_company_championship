@@ -148,25 +148,46 @@ class RateView(LoginRequiredMixin, View):
     def get(self, request):
         if request.user.is_staff:
             return render(request, 'Ratecompany/index.html',{"error": "staff cannot rate!"})
-        return render(request, 'Ratecompany/rate.html')
+            
+        user = request.user
+        comment_list = Comments.objects.filter(user_name=user.username).order_by("-create_time")
+        
+        return render(request, 'Ratecompany/rate.html',{'comment_list': comment_list})
 
     def post(self, request):
         classify = request.POST.get("classify")
-        star = int(request.POST.get("star"))
+        star = request.POST.get("star")
         content = request.POST.get("content")
         user = request.user
+        comment_list = Comments.objects.filter(user_name=user.username).order_by("-create_time")
+           
+        if classify is None or star is None:
+            return render(request, "Ratecompany/rate.html", {"error": "Please complete the info!",'comment_list': comment_list})
+        if len(content)<30:
+            return render(request, "Ratecompany/rate.html", {"error": "Please enter at least 30 characters in comment!",'comment_list': comment_list})
+        star=int(star)
+        print(star)
+        user = request.user
         company = user.company
-        Comments.objects.create(company=company, comments=content, classify=classify, score=star,
-                                user_name=user.username)
-        user_count = company.users.all().count()
+        Comments.objects.create(company=company, comments=content, classify=classify, score=star,user_name=user.username)
         if classify == '0':
-            company.salary = ((company.salary * user_count) + star) / user_count
+            commentcount = Comments.objects.filter(company=company,classify=0).count()
+            company.salary = ((company.salary * commentcount) + star) / commentcount
+            print(commentcount)
+            print(company.salary)
         if classify == '1':
-            company.salary = ((company.wellfare * user_count) + star) / user_count
+            company.wellfare = ((company.wellfare * user_count) + star) / user_count
+            print(user_count)
         if classify == '2':
             company.atmosphere = ((company.atmosphere * user_count) + star) / user_count
+            print(user_count)
         company.save()
-        return HttpResponseRedirect(reverse('Ratecompany:rate'))
+       
+           #print(company.wellfare)
+           #print(company.atmosphere)
+        return render(request, "Ratecompany/rate.html", {"error": "Submit successful!!!",'comment_list': comment_list})
+           #return HttpResponseRedirect(reverse('Ratecompany:rate'))
+
 
 
 
