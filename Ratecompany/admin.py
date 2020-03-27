@@ -9,8 +9,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'salary', 'wellfare', 'atmosphere', 'location')
-
+    list_display = ('name', 'location','salary', 'wellfare', 'atmosphere',)
+    prepopulated_fields = {'slug':('name',)}
 
 class CommentsAdmin(admin.ModelAdmin):
     list_display = ('comments', 'date')

@@ -28,9 +28,9 @@ class CompanyListView(View):
     def get(self, request):
         category = Category.objects.all()
         company = Company.objects.all()
-        category_id = request.GET.get('id')
-        if category_id:
-            company = company.filter(category__id=category_id)
+        category_slug = request.GET.get('category')
+        if category_slug:
+            company = company.filter(category__slug=category_slug)
         return render(request, 'Ratecompany/companies.html', {'companies': company, 'categories': category})
 
     def post(self, request):
@@ -51,8 +51,8 @@ class CompanyListView(View):
 class CompanyDetailView(View):
 
     def get(self, request, *args, **kwargs):
-        company_id = kwargs.get("id")
-        company = Company.objects.get(id=company_id)
+        company_slug = kwargs.get("slug")
+        company = Company.objects.get(slug=company_slug)
         return render(request, 'Ratecompany/company_detail.html', {'company': company})
 
 
@@ -60,9 +60,10 @@ class CompanyDetailView(View):
 #comment list
 class CommentListView(View):
     def get(self, request, *args, **kwargs):
-        company_id = request.GET.get("id")
-        company = Company.objects.get(id=company_id)
-
+        
+        company_slug = request.GET.get("company")
+              
+        company = Company.objects.get(slug=company_slug)
         comment_list = Comments.objects.filter(company=company).order_by("-create_time")
         _type = request.GET.get("type")
         if _type:

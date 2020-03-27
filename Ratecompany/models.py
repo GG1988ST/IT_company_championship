@@ -38,12 +38,17 @@ class Company(models.Model):
     salary=IntegerRangeField(min_value=1, max_value=5)
     wellfare=IntegerRangeField(min_value=1, max_value=5)
     atmosphere=IntegerRangeField(min_value=1, max_value=5)
+    slug = models.SlugField(unique=True)
     class Meta:
         verbose_name_plural = 'Companies'
 
     def __str__(self):
         return self.name
 
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Company, self).save(*args, **kwargs)
 
 class Comments(models.Model):
     COMMENTS_MAX_LENGTH = 400
