@@ -146,6 +146,8 @@ class LoginView(View):
 class RateView(LoginRequiredMixin, View):
 
     def get(self, request):
+        if request.user.is_staff:
+            return render(request, 'Ratecompany/index.html',{"error": "staff cannot rate!"})
         return render(request, 'Ratecompany/rate.html')
 
     def post(self, request):
