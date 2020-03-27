@@ -56,6 +56,8 @@
 
 {% block body_block %}
 <div>
+   
+    
     <div class="good-item">
         <div class="good-item-title">
             {{ company.name }} detail
@@ -91,7 +93,7 @@
 
         <div class="company-right" style="background-color:#FFF;height:650px;width:45%;float:left;border: 1px solid aliceblue;border: 1px solid aliceblue;
     overflow: scroll;">
-
+            
             <div style="background: transparent;">
             <a style=" margin-left:90px; margin-top:20px; color:whitesmoke; font-size: x-large; font-family: 'Times New Roman'" href="{% url 'Ratecompany:comment-list' %}?id={{ company.id }}"><b>view more comments</b></a></div>
             <ul style="list-style: none;padding: 6px" id="say-list">
