@@ -79,32 +79,25 @@ class RegisterView(View):
         return render(request, 'Ratecompany/register.html', {'company_list': company})
 
     def post(self, request):
-        company=Company.objects.all()
-        emailtag='kdjnedke'
+        company = Company.objects.all()
         company_id = request.POST.get("company_id")
-        if company_id =='1':
-                  emailtag= '@baidu.cn'
-        if company_id =='2':
-                  emailtag= '@google.cn'
-        if company_id =='3':
-                  emailtag= '@fire.cn'
-        if company_id =='4':
-                emailtag= '@wangyi.cn'
-        print(company_id)
-        print(emailtag)
         username = request.POST.get('username')
         email = request.POST.get('email')
+        
         print(company_id)
-        if email and not email.endswith(emailtag):
+        companylist=None;
+        companylist=Company.objects.filter(id=company_id)
+        if email and not email.endswith(companylist[0].emailtag):
             return render(request,'Ratecompany/register.html', {'error': 'non-commercial email','company_list':company})
+        
         password = request.POST.get('password')
         rePassword = request.POST.get('rePassword')
         if password != rePassword:
-            return render(request, 'Ratecompany/register.html', {'error': 'Inconsistent password'})
+            return render(request, 'Ratecompany/register.html', {'error': 'Inconsistent password','company_list':company})
 
         user = UserProfile.objects.filter(Q(username=username) | Q(email=email))
         if user:   # already has the user
-            return render(request, 'Ratecompany/register.html', {'error': 'account already exist'})
+            return render(request, 'Ratecompany/register.html', {'error': 'account already exist','company_list':company})
         obj = UserProfile.objects.create(username=username, email=email, company_id=company_id)
         obj.set_password(password)
         obj.save()
@@ -172,16 +165,23 @@ class RateView(LoginRequiredMixin, View):
         company = user.company
         Comments.objects.create(company=company, comments=content, classify=classify, score=star,user_name=user.username)
         if classify == '0':
+            print(company.salary)
             commentcount = Comments.objects.filter(company=company,classify=0).count()
-            company.salary = ((company.salary * commentcount) + star) / commentcount
+            company.salary = ((company.salary * (commentcount-1)) + star) / commentcount
             print(commentcount)
             print(company.salary)
         if classify == '1':
-            company.wellfare = ((company.wellfare * user_count) + star) / user_count
-            print(user_count)
+            print(company.wellfare)
+            commentcount = Comments.objects.filter(company=company,classify=1).count()
+            company.wellfare = ((company.wellfare * (commentcount-1)) + star) / commentcount
+            print(commentcount)
+            print(company.wellfare)
         if classify == '2':
-            company.atmosphere = ((company.atmosphere * user_count) + star) / user_count
-            print(user_count)
+            print(company.atmosphere)
+            commentcount = Comments.objects.filter(company=company,classify=2).count()
+            company.atmosphere = ((company.atmosphere * (commentcount-1)) + star)/ commentcount
+            print(commentcount)
+            print(company.atmosphere)
         company.save()
        
            #print(company.wellfare)

@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'location','salary', 'wellfare', 'atmosphere',)
+    list_display = ('name', 'location','salary', 'wellfare', 'atmosphere','emailtag')
     prepopulated_fields = {'slug':('name',)}
 
 class CommentsAdmin(admin.ModelAdmin):

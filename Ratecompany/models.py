@@ -33,11 +33,12 @@ class Company(models.Model):
     NAME_MAX_LENGTH = 128
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
+    emailtag=models.CharField(max_length=NAME_MAX_LENGTH, unique=True)
     image = models.ImageField(max_length=1000, upload_to='img', default='img/baidu.png', blank=True)
     location = models.CharField(max_length=NAME_MAX_LENGTH)
-    salary=IntegerRangeField(min_value=1, max_value=5)
-    wellfare=IntegerRangeField(min_value=1, max_value=5)
-    atmosphere=IntegerRangeField(min_value=1, max_value=5)
+    salary=IntegerRangeField(min_value=0, max_value=5)
+    wellfare=IntegerRangeField(min_value=0, max_value=5)
+    atmosphere=IntegerRangeField(min_value=0, max_value=5)
     slug = models.SlugField(unique=True)
     class Meta:
         verbose_name_plural = 'Companies'
