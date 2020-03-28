@@ -65,6 +65,7 @@ class CommentListView(View):
               
         company = Company.objects.get(slug=company_slug)
         comment_list = Comments.objects.filter(company=company).order_by("-create_time")
+        print(comment_list[0].get_classify_display)
         _type = request.GET.get("type")
         if _type:
             comment_list=comment_list.filter(classify=int(_type))
